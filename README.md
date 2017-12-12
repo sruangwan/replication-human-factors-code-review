@@ -78,12 +78,27 @@ options(datadist = "dd")
 ```R
 #Calculate spearman's correlation between independent variables
 vc <- varclus(~ ., data=df[,ind_vars], trans="abs")
+
 #Plot hierarchical clusters and the spearman's correlation threshold of 0.7
 plot(vc)
 threshold <- 0.7
 abline(h=1-threshold, col = "red", lty = 2)
 ```
 ![](figures/examples/varclus-1.png)
+```R
+#Remove highly correlated variable from the selected independent variables
+reject_vars <- c('Number_of_Remaining_Reviews')
+ind_vars <- ind_vars[!(ind_vars %in% reject_vars)]
+
+#Re-calculate spearman's correlation between independent variables
+vc <- varclus(~ ., data=df[,ind_vars], trans="abs")
+
+#Re-plot hierarchical clusters and the spearman's correlation threshold of 0.7
+plot(vc)
+threshold <- 0.7
+abline(h=1-threshold, col = "red", lty = 2)
+```
+![](figures/examples/varclus-2.png)
 
 #### (MC1-b) Remove redundant independent variables
 
