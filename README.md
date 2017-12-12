@@ -69,7 +69,7 @@ df$y = df$"Review_Decision" == 1
 #Select independent variables
 ind_vars <- c("Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author", "Median_Number_of_Comments", "Patch_Size", "Reviewer_Code_Authoring_Experience", "Reviewer_Reviewing_Experience", "Number_of_Remaining_Reviews", "Number_of_Concurrent_Reviews", "Review_Participation_Rate", "Number_of_Received_Review_Invitations", "Patch_Author_Code_Authoring_Experience", "Patch_Author_Reviewing_Experience", "Is_Core")
 
-#Set data distribution for RMS package for constructing a model
+#Set data distribution for RMS package to construct a model
 dd <- datadist(df[,c("y",ind_vars)])
 options(datadist = "dd")
 
