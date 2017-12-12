@@ -34,7 +34,58 @@ install.packages("rms")
 ### 4.2) Model Contruction
 
 ```R
+#Load RMS package
+library(rms)
 ```
+The output is:
+```
+## Loading required package: survival
+## Loading required package: Formula
+## Loading required package: lattice
+## Loading required package: Hmisc
+## Loading required package: ggplot2
+## 
+## Attaching package: ‘Hmisc’
+## 
+## The following objects are masked from ‘package:base’:
+## 
+##     format.pval, round.POSIXt, trunc.POSIXt, units
+## 
+## Loading required package: SparseM
+## 
+## Attaching package: ‘SparseM’
+## 
+## The following object is masked from ‘package:base’:
+## 
+##     backsolve
+```
+```R
+#Load RMS package
+df <- read.csv("{PATH_TO_DATASETS}/openstack.csv")
+
+#Set dependent variable
+df$y = df$"Review_Decision" == 1
+
+#Select independent variables
+ind_vars <- c("Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author", "Median_Number_of_Comments", "Patch_Size", "Reviewer_Code_Authoring_Experience", "Reviewer_Reviewing_Experience", "Number_of_Remaining_Reviews", "Number_of_Concurrent_Reviews", "Review_Participation_Rate", "Number_of_Received_Review_Invitations", "Patch_Author_Code_Authoring_Experience", "Patch_Author_Reviewing_Experience", "Is_Core")
+
+#Set data distribution for RMS package for constructing a model
+dd <- datadist(df[,c("y",ind_vars)])
+options(datadist = "dd")
+
+```
+#### (MC1-a) Remove highly-correlated independent variables
+```R
+#Calculate spearman's correlation between independent variables
+vc <- varclus(~ ., data=df[,ind_vars], trans="abs")
+#Plot hierarchical clusters and the spearman's correlation threshold of 0.7
+plot(vc)
+threshold <- 0.7
+abline(h=1-threshold, col = "red", lty = 2)
+```
+![](figures/examples/varclus.pdf)
+
+#### (MC1-b) Remove redundant independent variables
 
 ### 4.3) Model Analysis
 
