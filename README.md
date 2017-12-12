@@ -14,7 +14,7 @@ Shade Ruangwan, Patanamon Thongtanunam, Akinori Ihara, and Kenichi Matsumoto
 
 ## 2) Download Processed Datasets
 
-Each dataset contains 13 studied metrics. Each row also includes review ID and person ID (i.e., reviewer ID).
+Each dataset contains 13 studied metrics. Each row also includes review ID and person ID (reviewer ID), and a participation decision of the reviewer (Review_Decision column).
 
 - Android dataset (csv file, ~9 MB)
 - OpenStack dataset (csv file, ~32 MB)
