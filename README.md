@@ -14,6 +14,14 @@ Shade Ruangwan, Patanamon Thongtanunam, Akinori Ihara, and Kenichi Matsumoto
 
 ## 2) Download Processed Datasets
 
+Each dataset contains 13 studied metrics. Each row also includes review ID and person ID (i.e., reviewer ID).
+
+- Android dataset (csv file, ~9 MB)
+- OpenStack dataset (csv file, ~32 MB)
+- Qt dataset (csv file, ~15 MB)
+
+You can download these datasets [here](https://github.com/sruangwan/replication-human-factors-code-review/releases/latest).
+
 ## 3) Additional Results
 
 ## 4) Example R Scripts
