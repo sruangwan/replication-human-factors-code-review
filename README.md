@@ -83,7 +83,7 @@ plot(vc)
 threshold <- 0.7
 abline(h=1-threshold, col = "red", lty = 2)
 ```
-![](figures/examples/varclus.pdf)
+![](figures/examples/varclus-1.png)
 
 #### (MC1-b) Remove redundant independent variables
 
