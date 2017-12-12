@@ -82,7 +82,7 @@ vc <- varclus(~ ., data=df[,ind_vars], trans="abs")
 #Plot hierarchical clusters and the spearman's correlation threshold of 0.7
 plot(vc)
 threshold <- 0.7
-abline(h=1-threshold, col = "red", lty = 2)
+abline(h=1-threshold, col="red", lty=2)
 ```
 ![](figures/examples/varclus-1.png)
 ```R
@@ -96,7 +96,7 @@ vc <- varclus(~ ., data=df[,ind_vars], trans="abs")
 #Re-plot hierarchical clusters and the spearman's correlation threshold of 0.7
 plot(vc)
 threshold <- 0.7
-abline(h=1-threshold, col = "red", lty = 2)
+abline(h=1-threshold, col="red", lty=2)
 ```
 ![](figures/examples/varclus-2.png)
 
