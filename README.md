@@ -6,7 +6,7 @@ Shade Ruangwan, Patanamon Thongtanunam, Akinori Ihara, and Kenichi Matsumoto
 ```bibtex
 @acticle{Ruangwan2017,
     author = {Ruangwan, Shade and Thongtanunam, Patanamon and Ihara, Akinori and Matsumoto, Kenichi},
-    title = {{The Impact of Human Factors on the Participation Decision of Reviewers in Modern Code Review}}
+    title = {The Impact of Human Factors on the Participation Decision of Reviewers in Modern Code Review}
     journal = {Under Major Revision at Empirical Software Engineering}
     year = {2017}
 }
