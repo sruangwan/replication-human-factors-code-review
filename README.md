@@ -214,7 +214,7 @@ comb <- function(...) {
     mapply(rbind, ..., SIMPLIFY=FALSE)
 }
 
-#Run the parallel process with 1,000 iterations of foreach with the ```comb``` combination function
+#Run the parallel process with 1,000 iterations of foreach with the `comb` combination function
 bootstrap_output <- foreach(i=1:1000, .combine='comb', .multicombine=TRUE) %dopar% {
     #Set seed so the results are reproducible
     set.seed(i)
@@ -224,12 +224,12 @@ bootstrap_output <- foreach(i=1:1000, .combine='comb', .multicombine=TRUE) %dopa
     library(pROC)
     library(caret)
 
-    #Randomly draw a bootstrap sample with replacement from the original dataset and put it in ```training```
+    #Randomly draw a bootstrap sample with replacement from the original dataset and put it in `training`
     #This will be a training dataset for the nonlinear logistic regression model
     indices <- sample(nrow(df), replace=TRUE)
     training <- df[indices,]
 
-    #Put other instances that are not in ```training``` to ```testing```
+    #Put other instances that are not in `training` to `testing`
     #This will be a testing dataset for the nonlinear logistic regression
     testing <- df[-unique(indices),]
 
@@ -281,7 +281,7 @@ comb <- function(...) {
     mapply(rbind, ..., SIMPLIFY=FALSE)
 }
 
-#Run the parallel process with 1,000 iterations of foreach with the ```comb``` combination function
+#Run the parallel process with 1,000 iterations of foreach with the `comb` combination function
 bootstrap_output <- foreach(i=1:1000, .combine='comb', .multicombine=TRUE) %dopar% {
     #Set seed so the results are reproducible
     set.seed(i)
@@ -291,12 +291,12 @@ bootstrap_output <- foreach(i=1:1000, .combine='comb', .multicombine=TRUE) %dopa
     library(pROC)
     library(caret)
 
-    #Randomly draw a bootstrap sample with replacement from the original dataset and put it in ```training```
+    #Randomly draw a bootstrap sample with replacement from the original dataset and put it in `training`
     #This will be a training dataset for the nonlinear logistic regression model
     indices <- sample(nrow(df), replace=TRUE)
     training <- df[indices,]
 
-    #Put other instances that are not in ```training``` to ```testing```
+    #Put other instances that are not in `training` to `testing`
     #This will be a testing dataset for the nonlinear logistic regression
     testing <- df[-unique(indices),]
 
