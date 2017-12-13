@@ -249,7 +249,7 @@ bootstrap_output <- foreach(i=1:1000, .combine='comb', .multicombine=TRUE) %dopa
     #Calculate Brier score
     brier <- mean((prob-testing$Review_Decision)^2)
 
-    #Combine the performance estimates as a result of single iteration
+    #Combine the performance estimates as an output of single iteration
     cbind(recall, precision, Fmeasure, auc, brier)
 }
 ```
@@ -309,7 +309,7 @@ bootstrap_output <- foreach(i=1:1000, .combine='comb', .multicombine=TRUE) %dopa
     chisq <- t(ep_df["Chi-Square"])
     pvalue <- t(ep_df["P"])
 
-    #Combine the power of explanatory and the statistical significance as a result of single iteration
+    #Combine the power of explanatory and the statistical significance as an output of single iteration
     cbind(chisq, pvalue)
 }
 ```
@@ -367,4 +367,42 @@ The output is:
 ```
 
 #### (MA3) Examine the relationships between the variables and the participation decision
-Note that this part is a continuation from MC2-c
+Note that the model in this part is trained using the original dataset (a continuation from MC2-c).
+```R
+predict <- Predict(model, Review_Participation_Rate, fun=function(x) 1/(1+exp(-x)))
+plot(predict)
+```
+![](figures/examples/relationship.png)
+Estimate the partial effect
+```R
+partial_effect = summary(model)
+print(partial_effect)
+```
+The output is:
+```
+##             Effects              Response : y 
+##
+## Factor                                                        Low       High       Diff.      Effect      S.E.       Lower 0.95  Upper 0.95 
+## Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author  0.000000   6.000000   6.000000  0.02107500 2.7146e-03  1.5754e-02  0.02639500
+##  Odds Ratio                                                    0.000000   6.000000   6.000000  1.02130000         NA  1.0159e+00  1.02670000
+## Median_Number_of_Comments                                      1.000000   2.000000   1.000000  0.03213200 3.8081e-03  2.4668e-02  0.03959500
+##  Odds Ratio                                                    1.000000   2.000000   1.000000  1.03270000         NA  1.0250e+00  1.04040000
+## Patch_Size                                                    13.000000 489.000000 476.000000  0.00001133 5.2224e-05 -9.1027e-05  0.00011369
+##  Odds Ratio                                                   13.000000 489.000000 476.000000  1.00000000         NA  9.9991e-01  1.00010000
+## Reviewer_Code_Authoring_Experience                             0.000000   0.082798   0.082798  0.15397000 4.5433e-03  1.4507e-01  0.16288000
+##  Odds Ratio                                                    0.000000   0.082798   0.082798  1.16650000         NA  1.1561e+00  1.17690000
+## Reviewer_Reviewing_Experience                                  0.000000   1.000000   1.000000  1.59440000 1.3511e-01  1.3296e+00  1.85920000
+##  Odds Ratio                                                    0.000000   1.000000   1.000000  4.92520000         NA  3.7794e+00  6.41840000
+## Number_of_Concurrent_Reviews                                  12.000000 103.000000  91.000000 -0.01061300 2.7813e-03 -1.6064e-02 -0.00516180
+##  Odds Ratio                                                   12.000000 103.000000  91.000000  0.98944000         NA  9.8406e-01  0.99485000
+## Review_Participation_Rate                                      0.913870   1.000000   0.086133  4.35120000 5.4364e-02  4.2446e+00  4.45770000
+##  Odds Ratio                                                    0.913870   1.000000   0.086133 77.57100000         NA  6.9731e+01 86.29200000
+## Number_of_Received_Review_Invitations                         19.000000 382.000000 363.000000 -0.00036466 4.5986e-03 -9.3778e-03  0.00864850
+##  Odds Ratio                                                   19.000000 382.000000 363.000000  0.99964000         NA  9.9067e-01  1.00870000
+## Patch_Author_Code_Authoring_Experience                         0.015663   0.267260   0.251600 -0.08877900 5.2954e-03 -9.9157e-02 -0.07840000
+##  Odds Ratio                                                    0.015663   0.267260   0.251600  0.91505000         NA  9.0560e-01  0.92459000
+## Patch_Author_Reviewing_Experience                              0.000000   1.000000   1.000000 -2.28560000 8.8233e-02 -2.4586e+00 -2.11270000
+##  Odds Ratio                                                    0.000000   1.000000   1.000000  0.10171000         NA  8.5557e-02  0.12091000
+## Is_Core                                                        0.000000   1.000000   1.000000 -0.03688000 1.3688e-02 -6.3708e-02 -0.01005200
+##  Odds Ratio                                                    0.000000   1.000000   1.000000  0.96379000         NA  9.3828e-01  0.99000000
+```
