@@ -86,7 +86,7 @@ abline(h=1-threshold, col="red", lty=2)
 ```
 ![](figures/examples/varclus-1.png)
 ```R
-#Remove highly correlated variable from the selected independent variables
+#Remove the highly correlated variable from the selected independent variables
 reject_vars <- c('Number_of_Remaining_Reviews')
 ind_vars <- ind_vars[!(ind_vars %in% reject_vars)]
 
@@ -101,7 +101,56 @@ abline(h=1-threshold, col="red", lty=2)
 ![](figures/examples/varclus-2.png)
 
 #### (MC1-b) Remove redundant independent variables
-
+```R
+red <- redun(~., data=df[,ind_vars], nk=0) 
+print(red)
+```
+The output is:
+```
+## Redundancy Analysis
+## 
+## redun(formula = ~., data = df[, ind_vars], nk = 0)
+## 
+## n: 466520 	p: 11 	nk: 0 
+## 
+## Number of NAs:	 0 
+## 
+## Transformation of target variables forced to be linear
+## 
+## R-squared cutoff: 0.9 	Type: ordinary 
+## 
+## R^2 with which each variable can be predicted from all other variables:
+## 
+## Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author 
+##                                                         0.114 
+##                                     Median_Number_of_Comments 
+##                                                         0.045 
+##                                                    Patch_Size 
+##                                                         0.001 
+##                            Reviewer_Code_Authoring_Experience 
+##                                                         0.114 
+##                                 Reviewer_Reviewing_Experience 
+##                                                         0.138 
+##                                  Number_of_Concurrent_Reviews 
+##                                                         0.162 
+##                                     Review_Participation_Rate 
+##                                                         0.035 
+##                         Number_of_Received_Review_Invitations 
+##                                                         0.253 
+##                        Patch_Author_Code_Authoring_Experience 
+##                                                         0.141 
+##                             Patch_Author_Reviewing_Experience 
+##                                                         0.134 
+##                                                       Is_Core 
+##                                                         0.114 
+## 
+## No redundant variables
+```
+```R
+#If there are any redundant variables, remove the redundant variables from the selected independent variables
+reject_vars <- red$Out
+ind_vars <- ind_vars[!(ind_vars %in% reject_vars)]
+```
 ### 4.3) Model Analysis
 
 ```R
