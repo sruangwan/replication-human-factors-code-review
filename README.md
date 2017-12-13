@@ -172,9 +172,12 @@ The output is:
 ```
 #### (MC2-b) Measure and plot a dotplot of the Spearman multiple ρ<sup>2</sup> of each independent variable
 ```R
+sp <- spearman2(formula(paste("Review_Decision" ," ~ ",paste0(ind_vars, collapse=" + "))), data= df, p=2)
+plot(sp)
 ```
 #### (MC2-c) Allocate degrees of freedom based on the Spearman multiple ρ<sup>2</sup> of independent variables and fit a nonlinear logistic regression model using restricted cubic splines
 ```R
+m <- lrm(y ~ Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author + Median_Number_of_Comments + Patch_Size + Reviewer_Code_Authoring_Experience + Reviewer_Reviewing_Experience + Number_of_Concurrent_Reviews + rcs(Review_Participation_Rate, 3) + Number_of_Received_Review_Invitations + Patch_Author_Code_Authoring_Experience + Patch_Author_Reviewing_Experience + Is_Core, data=df, x=T, y=T)
 ```
 ### 4.3) Model Analysis
 
