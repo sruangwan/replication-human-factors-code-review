@@ -35,6 +35,7 @@ install.packages("rms")
 install.packages("doParallel")
 install.packages("pROC")
 install.packages("caret")
+install.packages("ScottKnottESD")
 ```
 
 ### 4.2) Model Contruction
@@ -66,7 +67,7 @@ The output is:
 ##     backsolve
 ```
 ```R
-#Load RMS package
+#Load OpenStack dataset
 df <- read.csv("{PATH_TO_DATASETS}/openstack.csv")
 
 #Set dependent variable
@@ -254,7 +255,7 @@ bootstrap_output <- foreach(i=1:1000, .combine='comb', .multicombine=TRUE) %dopa
 ```
 You can download the performance estimates [here](https://github.com/sruangwan/replication-human-factors-code-review/releases/latest).
 
-#### (MA2) Estimate the power of explanatory
+#### (MA2-a) Estimate the power of explanatory
 The first part of the example script is the same as MA1 until the line where we fit a model. We seperate the script for the purpose of clarification. However, MA1 and MA2 can be combined and executed at the same time.
 ```R
 #Load doParallel package
@@ -313,3 +314,57 @@ bootstrap_output <- foreach(i=1:1000, .combine='comb', .multicombine=TRUE) %dopa
 }
 ```
 You can download the power of explanatory and the statistical significance [here](https://github.com/sruangwan/replication-human-factors-code-review/releases/latest).
+
+#### (MA2-b) Determine ranks of explanatory power of the variables using Scott-Knott Effect Size Difference (ESD) test
+```R
+#Load ScottKnottESD package
+library("ScottKnottESD")
+```
+The output is:
+```
+## Loading required package: reshape2
+## Loading required package: effsize
+## Loading required package: car
+## 
+## Attaching package: ‘car’
+## 
+## The following object is masked from ‘package:rms’:
+## 
+##     vif
+```
+```R
+#Load the power of explanatory data
+wald <- read.csv("{PATH_TO_RESULTS}/openstack-wald.csv")
+
+#Calculate and show the rank of explanatory power
+rank <- sk_esd(wald)
+print(rank$groups)
+```
+The output is:
+```
+##                                     Review_Participation_Rate 
+##                                                             1 
+##                            Reviewer_Code_Authoring_Experience 
+##                                                             2 
+##                             Patch_Author_Reviewing_Experience 
+##                                                             3 
+##                        Patch_Author_Code_Authoring_Experience 
+##                                                             4 
+##                                 Reviewer_Reviewing_Experience 
+##                                                             5 
+##                                     Median_Number_of_Comments 
+##                                                             6 
+## Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author 
+##                                                             7 
+##                                  Number_of_Concurrent_Reviews 
+##                                                             8 
+##                                                       Is_Core 
+##                                                             9 
+##                         Number_of_Received_Review_Invitations 
+##                                                            10 
+##                                                    Patch_Size 
+##                                                            11 
+```
+
+#### (MA3) Examine the relationships between the variables and the participation decision
+Note that this part is a continuation from MC2-c
