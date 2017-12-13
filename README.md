@@ -151,6 +151,31 @@ The output is:
 reject_vars <- red$Out
 ind_vars <- ind_vars[!(ind_vars %in% reject_vars)]
 ```
+#### (MC2-a) Estimates a budget for degrees of freedom
+```R
+#Print number of FALSE and TRUE instances
+print(table(df$y))
+```
+The output is:
+```
+# FALSE   TRUE 
+# 44593 421927
+```
+```R
+#Calculate and print the budgeted degrees of freedom
+budgeted_df =  budgeted_df = floor(min(nrow(df[df$y == T,]), nrow(df[df$y == F,]) )/15)
+print(budgeted_df)
+```
+The output is:
+```
+# [1] 2972
+```
+#### (MC2-b) Measure and plot a dotplot of the Spearman multiple ρ<sup>2</sup> of each independent variable
+```R
+```
+#### (MC2-c) Allocate degrees of freedom based on the Spearman multiple ρ<sup>2</sup> of independent variables and fit a nonlinear logistic regression model using restricted cubic splines
+```R
+```
 ### 4.3) Model Analysis
 
 ```R
