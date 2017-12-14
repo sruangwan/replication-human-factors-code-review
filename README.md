@@ -32,7 +32,7 @@ You can download these datasets [here](https://github.com/sruangwan/replication-
 ### 3.2) Model Analysis
 | Relationship Figure                                                 | Android                                                              | OpenStack                                                              | Qt                                                              |
 |---------------------------------------------------------------------|----------------------------------------------------------------------|------------------------------------------------------------------------|-----------------------------------------------------------------|
-| Participation Rate and the Likelihood                               | [View](figures/relationship/participation-rate-android.pdf)          | [View](figures/relationship/participation-rate-openstack.pdf)          | [View](figures/relationship/participation-rate-qt.pdf)          |
+| Review Participation Rate of an Invited Reviewer and the Likelihood | [View](figures/relationship/participation-rate-android.pdf)          | [View](figures/relationship/participation-rate-openstack.pdf)          | [View](figures/relationship/participation-rate-qt.pdf)          |
 | Code Authoring Experience of an Invited Reviewer and the Likelihood | [View](figures/relationship/reviewer-code-authoring-exp-android.pdf) | [View](figures/relationship/reviewer-code-authoring-exp-openstack.pdf) | [View](figures/relationship/reviewer-code-authoring-exp-qt.pdf) |
 
 ## 4) Example R Scripts
