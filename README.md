@@ -23,11 +23,17 @@ You can download these datasets [here](https://github.com/sruangwan/replication-
 
 ## 3) Additional Results
 
-### Model Construction
+### 3.1) Model Construction
 | (Part) Figure                                        | Android                                       | OpenStack                                       | Qt                                       |
 |------------------------------------------------------|-----------------------------------------------|-------------------------------------------------|------------------------------------------|
 | (MC1) Hierarchical clustering                        | [View](figures/varclus/varclus-android.pdf)   | [View](figures/varclus/varclus-openstack.pdf)   | [View](figures/varclus/varclus-qt.pdf)   |
 | (MC2) Dotplot of the Spearman multiple ρ<sup>2</sup> | [View](figures/spearman/spearman-android.pdf) | [View](figures/spearman/spearman-openstack.pdf) | [View](figures/spearman/spearman-qt.pdf) |
+
+### 3.2) Model Analysis
+| Relationship Figure                                                 | Android                                                              | OpenStack                                                              | Qt                                                              |
+|---------------------------------------------------------------------|----------------------------------------------------------------------|------------------------------------------------------------------------|-----------------------------------------------------------------|
+| Participation Rate and the Likelihood                               | [View](figures/relationship/participation-rate-android.pdf)          | [View](figures/relationship/participation-rate-openstack.pdf)          | [View](figures/relationship/participation-rate-qt.pdf)          |
+| Code Authoring Experience of an Invited Reviewer and the Likelihood | [View](figures/relationship/reviewer-code-authoring-exp-android.pdf) | [View](figures/relationship/reviewer-code-authoring-exp-openstack.pdf) | [View](figures/relationship/reviewer-code-authoring-exp-qt.pdf) |
 
 ## 4) Example R Scripts
 
