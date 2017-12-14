@@ -74,7 +74,7 @@ df <- read.csv("{PATH_TO_DATASETS}/openstack.csv")
 df$y = df$"Review_Decision" == 1
 
 #Select independent variables
-ind_vars <- c("Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author", "Median_Number_of_Comments", "Patch_Size", "Reviewer_Code_Authoring_Experience", "Reviewer_Reviewing_Experience", "Number_of_Remaining_Reviews", "Number_of_Concurrent_Reviews", "Review_Participation_Rate", "Number_of_Received_Review_Invitations", "Patch_Author_Code_Authoring_Experience", "Patch_Author_Reviewing_Experience", "Is_Core")
+ind_vars <- c("Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author", "Median_Number_of_Comments", "Patch_Size", "Reviewer_Code_Authoring_Experience", "Reviewer_Reviewing_Experience", "Number_of_Remaining_Reviews", "Number_of_Concurrent_Reviews", "Review_Participation_Rate", "Number_of_Received_Review_Invitations", "Patch_Author_Code_Authoring_Experience", "Patch_Author_Reviewing_Experience", "Core_Member_Status")
 
 #Set data distribution for RMS package to construct a model
 dd <- datadist(df[,c("y",ind_vars)])
@@ -148,7 +148,7 @@ The output is:
 ##                                                         0.141 
 ##                             Patch_Author_Reviewing_Experience 
 ##                                                         0.134 
-##                                                       Is_Core 
+##                                            Core_Member_Status 
 ##                                                         0.114 
 ## 
 ## No redundant variables
@@ -185,7 +185,7 @@ plot(sp)
 ![](figures/examples/spearman-dotplot.png)
 #### (MC2-c) Allocate degrees of freedom based on the Spearman multiple ρ<sup>2</sup> of independent variables and fit a nonlinear logistic regression model using restricted cubic splines with original dataset
 ```R
-model <- lrm(y ~ Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author + Median_Number_of_Comments + Patch_Size + Reviewer_Code_Authoring_Experience + Reviewer_Reviewing_Experience + Number_of_Concurrent_Reviews + rcs(Review_Participation_Rate, 3) + Number_of_Received_Review_Invitations + Patch_Author_Code_Authoring_Experience + Patch_Author_Reviewing_Experience + Is_Core, data=df, x=T, y=T)
+model <- lrm(y ~ Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author + Median_Number_of_Comments + Patch_Size + Reviewer_Code_Authoring_Experience + Reviewer_Reviewing_Experience + Number_of_Concurrent_Reviews + rcs(Review_Participation_Rate, 3) + Number_of_Received_Review_Invitations + Patch_Author_Code_Authoring_Experience + Patch_Author_Reviewing_Experience + Core_Member_Status, data=df, x=T, y=T)
 ```
 ### 4.3) Model Analysis
 
@@ -234,7 +234,7 @@ bootstrap_output <- foreach(i=1:1000, .combine='comb', .multicombine=TRUE) %dopa
     testing <- df[-unique(indices),]
 
     #Fit a nonlinear logistic regression model using the same allocated degrees of freedom as MC3-c using the training dataset
-    m <- lrm(y ~ Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author + Median_Number_of_Comments + Patch_Size + Reviewer_Code_Authoring_Experience + Reviewer_Reviewing_Experience + Number_of_Concurrent_Reviews + rcs(Review_Participation_Rate, 3) + Number_of_Received_Review_Invitations + Patch_Author_Code_Authoring_Experience + Patch_Author_Reviewing_Experience + Is_Core, data=training, x=T, y=T)
+    m <- lrm(y ~ Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author + Median_Number_of_Comments + Patch_Size + Reviewer_Code_Authoring_Experience + Reviewer_Reviewing_Experience + Number_of_Concurrent_Reviews + rcs(Review_Participation_Rate, 3) + Number_of_Received_Review_Invitations + Patch_Author_Code_Authoring_Experience + Patch_Author_Reviewing_Experience + Core_Member_Status, data=training, x=T, y=T)
     
     #Calculate Precision, Recall, and F-measure 
     prob <- rms:::predict.lrm(m, testing, type='fitted')
@@ -301,7 +301,7 @@ bootstrap_output <- foreach(i=1:1000, .combine='comb', .multicombine=TRUE) %dopa
     testing <- df[-unique(indices),]
 
     #Fit a nonlinear logistic regression model using the same allocated degrees of freedom as MC3-c using the training dataset
-    m <- lrm(y ~ Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author + Median_Number_of_Comments + Patch_Size + Reviewer_Code_Authoring_Experience + Reviewer_Reviewing_Experience + Number_of_Concurrent_Reviews + rcs(Review_Participation_Rate, 3) + Number_of_Received_Review_Invitations + Patch_Author_Code_Authoring_Experience + Patch_Author_Reviewing_Experience + Is_Core, data=training, x=T, y=T)
+    m <- lrm(y ~ Familiarity_between_the_Invited_Reviewer_and_the_Patch_Author + Median_Number_of_Comments + Patch_Size + Reviewer_Code_Authoring_Experience + Reviewer_Reviewing_Experience + Number_of_Concurrent_Reviews + rcs(Review_Participation_Rate, 3) + Number_of_Received_Review_Invitations + Patch_Author_Code_Authoring_Experience + Patch_Author_Reviewing_Experience + Core_Member_Status, data=training, x=T, y=T)
     
     #Estimate the power of explanatory (Wald χ2) of each variable with its statistical significance (p-value)
     explantory_power <- anova(m, test='Chisq')
@@ -358,7 +358,7 @@ The output is:
 ##                                                             7 
 ##                                  Number_of_Concurrent_Reviews 
 ##                                                             8 
-##                                                       Is_Core 
+##                                            Core_Member_Status 
 ##                                                             9 
 ##                         Number_of_Received_Review_Invitations 
 ##                                                            10 
@@ -403,6 +403,6 @@ The output is:
 ##  Odds Ratio                                                    0.015663   0.267260   0.251600  0.91505000         NA  9.0560e-01  0.92459000
 ## Patch_Author_Reviewing_Experience                              0.000000   1.000000   1.000000 -2.28560000 8.8233e-02 -2.4586e+00 -2.11270000
 ##  Odds Ratio                                                    0.000000   1.000000   1.000000  0.10171000         NA  8.5557e-02  0.12091000
-## Is_Core                                                        0.000000   1.000000   1.000000 -0.03688000 1.3688e-02 -6.3708e-02 -0.01005200
+## Core_Member_Status                                             0.000000   1.000000   1.000000 -0.03688000 1.3688e-02 -6.3708e-02 -0.01005200
 ##  Odds Ratio                                                    0.000000   1.000000   1.000000  0.96379000         NA  9.3828e-01  0.99000000
 ```
