@@ -24,10 +24,10 @@ You can download these datasets [here](https://github.com/sruangwan/replication-
 ## 3) Additional Results
 
 ### Model Construction
-| (Part) Figure                                        | Android                                     | OpenStack | Qt |
-|------------------------------------------------------|---------------------------------------------|-----------|----|
-| (MC1) Hierarchical clustering                        | [View](figures/varclus/varclus-android.pdf) |           |    |
-| (MC2) Dotplot of the Spearman multiple ρ<sup>2</sup> |                                             |           |    |
+| (Part) Figure                                        | Android                                       | OpenStack                                       | Qt                                       |
+|------------------------------------------------------|-----------------------------------------------|-------------------------------------------------|------------------------------------------|
+| (MC1) Hierarchical clustering                        | [View](figures/varclus/varclus-android.pdf)   | [View](figures/varclus/varclus-openstack.pdf)   | [View](figures/varclus/varclus-qt.pdf)   |
+| (MC2) Dotplot of the Spearman multiple ρ<sup>2</sup> | [View](figures/spearman/spearman-android.pdf) | [View](figures/spearman/spearman-openstack.pdf) | [View](figures/spearman/spearman-qt.pdf) |
 
 ## 4) Example R Scripts
 
