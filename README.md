@@ -421,7 +421,7 @@ The output is:
 
 ### 4.4) Retrieve Developers Email Address
 We use [REST API](https://gerrit-review.googlesource.com/Documentation/rest-api.html) provided by Gerrit to retrieve developers email address.
-Below, we provide the retrieval script written using ```Python 2.7```. We use [Pygerrit2](https://github.com/dpursehouse/pygerrit2) library as an interface to interact with Gerrit via REST API.
+Below, we provide the example retrieval script of OpenStack written in ```Python 2.7```. We use [Pygerrit2](https://github.com/dpursehouse/pygerrit2) library as an interface to interact with Gerrit via REST API.
 ```python
 # Load Pygerrit2 library
 from requests.auth import HTTPDigestAuth
@@ -429,6 +429,9 @@ from pygerrit.rest import GerritRestAPI
 
 # To delay between each API request
 import time
+
+# To output email address to csv file
+import csv
 
 # Set the URL of Gerrit
 auth = None
