@@ -446,8 +446,8 @@ for developer_id in developer_list:
 
     # Output to csv file
     with open("output.csv", 'a') as csvfile:
-				wr = csv.writer(csvfile, dialect='excel')
-				wr.writerow((developer_fullname, developer_email))
+        wr = csv.writer(csvfile, dialect='excel')
+        wr.writerow((developer_fullname, developer_email))
 
     # Wait 1 second
     time.sleep(1)
