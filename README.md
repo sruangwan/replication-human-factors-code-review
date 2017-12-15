@@ -418,3 +418,39 @@ The output is:
 ## Core_Member_Status                                             0.000000   1.000000   1.000000 -0.03688000 1.3688e-02 -6.3708e-02 -0.01005200
 ##  Odds Ratio                                                    0.000000   1.000000   1.000000  0.96379000         NA  9.3828e-01  0.99000000
 ```
+
+### 4.4) Retrieve Developers Email Address
+We use [REST API](https://gerrit-review.googlesource.com/Documentation/rest-api.html) provided by Gerrit to retrieve developers email address.
+Below, we provide the retrieval script written using ```Python 2.7```. We use [Pygerrit2](https://github.com/dpursehouse/pygerrit2) library as an interface to interact with Gerrit via REST API.
+```python
+# Load Pygerrit2 library
+from requests.auth import HTTPDigestAuth
+from pygerrit.rest import GerritRestAPI
+
+# To delay between each API request
+import time
+
+# Set the URL of Gerrit
+auth = None
+rest = GerritRestAPI(url='https://review.openstack.org', auth=auth)
+
+for developer_id in developer_list:
+    # Get account info (JSON format) from Gerrit
+    account_info = rest.get("/accounts/"+str(developer_id))
+
+    # Retrieve developer fullname from the downloaded JSON
+    developer_fullname = account_info['name']
+
+    # Retrieve email address from the downloaded JSON
+    developer_email = account_info['email']
+
+    # Output to csv file
+    with open("output.csv", 'a') as csvfile:
+				wr = csv.writer(csvfile, dialect='excel')
+				wr.writerow((developer_fullname, developer_email))
+
+    # Wait 1 second
+    time.sleep(1)
+
+```
+
