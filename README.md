@@ -16,6 +16,7 @@ Shade Ruangwan, Patanamon Thongtanunam, Akinori Ihara, and Kenichi Matsumoto
 Each dataset contains 13 studied metrics. Each row also includes review ID and person ID (reviewer ID), and a participation decision of the reviewer (Review_Decision column).
 
 - Android dataset (csv file, ~9 MB)
+- LibreOffice dataset (csv file, ~2 MB)
 - OpenStack dataset (csv file, ~32 MB)
 - Qt dataset (csv file, ~15 MB)
 
@@ -24,16 +25,16 @@ You can download these datasets [here](https://github.com/sruangwan/replication-
 ## 3) Additional Results
 
 ### 3.1) Model Construction
-| (Part) Figure                                        | Android                                       | OpenStack                                       | Qt                                       |
-|------------------------------------------------------|-----------------------------------------------|-------------------------------------------------|------------------------------------------|
-| (MC1) Hierarchical clustering                        | [View](figures/varclus/varclus-android.pdf)   | [View](figures/varclus/varclus-openstack.pdf)   | [View](figures/varclus/varclus-qt.pdf)   |
-| (MC2) Dotplot of the Spearman multiple ρ<sup>2</sup> | [View](figures/spearman/spearman-android.pdf) | [View](figures/spearman/spearman-openstack.pdf) | [View](figures/spearman/spearman-qt.pdf) |
+| (Part) Figure                                        | Android                                       | LibreOffice                                       | OpenStack                                       | Qt                                       |
+|------------------------------------------------------|-----------------------------------------------|---------------------------------------------------|-------------------------------------------------|------------------------------------------|
+| (MC1) Hierarchical clustering                        | [View](figures/varclus/varclus-android.pdf)   | [View](figures/varclus/varclus-libreoffice.pdf)   | [View](figures/varclus/varclus-openstack.pdf)   | [View](figures/varclus/varclus-qt.pdf)   |
+| (MC2) Dotplot of the Spearman multiple ρ<sup>2</sup> | [View](figures/spearman/spearman-android.pdf) | [View](figures/spearman/spearman-libreoffice.pdf) | [View](figures/spearman/spearman-openstack.pdf) | [View](figures/spearman/spearman-qt.pdf) |
 
 ### 3.2) Model Analysis
-| Relationship Figure                                                 | Android                                                              | OpenStack                                                              | Qt                                                              |
-|---------------------------------------------------------------------|----------------------------------------------------------------------|------------------------------------------------------------------------|-----------------------------------------------------------------|
-| Review Participation Rate of an Invited Reviewer and the Likelihood | [View](figures/relationship/participation-rate-android.pdf)          | [View](figures/relationship/participation-rate-openstack.pdf)          | [View](figures/relationship/participation-rate-qt.pdf)          |
-| Code Authoring Experience of an Invited Reviewer and the Likelihood | [View](figures/relationship/reviewer-code-authoring-exp-android.pdf) | [View](figures/relationship/reviewer-code-authoring-exp-openstack.pdf) | [View](figures/relationship/reviewer-code-authoring-exp-qt.pdf) |
+| Relationship Figure                                                 | Android                                                              | LibreOffice                                                              | OpenStack                                                              | Qt                                                              |
+|---------------------------------------------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------------|------------------------------------------------------------------------|-----------------------------------------------------------------|
+| Review Participation Rate of an Invited Reviewer and the Likelihood | [View](figures/relationship/participation-rate-android.pdf)          | [View](figures/relationship/participation-rate-libreoffice.pdf)          | [View](figures/relationship/participation-rate-openstack.pdf)          | [View](figures/relationship/participation-rate-qt.pdf)          |
+| Code Authoring Experience of an Invited Reviewer and the Likelihood | [View](figures/relationship/reviewer-code-authoring-exp-android.pdf) | [View](figures/relationship/reviewer-code-authoring-exp-libreoffice.pdf) | [View](figures/relationship/reviewer-code-authoring-exp-openstack.pdf) | [View](figures/relationship/reviewer-code-authoring-exp-qt.pdf) |
 
 ## 4) Example R Scripts
 
@@ -385,6 +386,7 @@ predict <- Predict(model, Review_Participation_Rate, fun=function(x) 1/(1+exp(-x
 plot(predict)
 ```
 ![](figures/examples/relationship.png)
+
 Estimate the partial effect
 ```R
 partial_effect = summary(model)
