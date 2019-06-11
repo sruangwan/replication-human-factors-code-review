@@ -8,10 +8,10 @@ Shade Ruangwan, Patanamon Thongtanunam, Akinori Ihara, and Kenichi Matsumoto
     author = {Ruangwan, Shade and Thongtanunam, Patanamon and Ihara, Akinori and Matsumoto, Kenichi},
     title = {The Impact of Human Factors on the Participation Decision of Reviewers in Modern Code Review}
     journal = {Empirical Software Engineering}
-    year={2019}, 
-    volume={24}, 
-    number={2}, 
-    pages={973-1016}
+    year = {2019}, 
+    volume = {24}, 
+    number = {2}, 
+    pages = {973-1016}
 }
 ```
 
